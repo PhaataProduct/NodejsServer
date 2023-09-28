@@ -1,0 +1,30 @@
+import axiosServer from "../config/axiosServer.js";
+
+export const getIdRoom = (userId1, userId2) => {
+  if (+userId1 <= userId2) {
+    return `${userId1}-${userId2}`;
+  }
+  return `${userId2}-${userId1}`;
+};
+
+export const updateStatusUser = (userId, status) => {
+  if (!userId) {
+    return;
+  }
+  axiosServer.put(`chats?user_id=${userId}&status=${status}`);
+};
+
+export const sendMessage = (data) => {
+  const { from, to, text } = data;
+  const dataMessage = {
+    from_id: from.id,
+    to_user: to.id,
+    friend_id: to.id,
+    message: text,
+    file: '',
+    is_subfolder: '',
+  }
+  return axiosServer.post('messages', dataMessage).catch(err => {
+    console.log(err)
+  });
+};
