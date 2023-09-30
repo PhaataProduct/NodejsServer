@@ -7,9 +7,8 @@ export const ConnectSocket = (server) => {
   const io = new Server(server, {
     cors: {
       origin: [
-        "http://localhost:3000",
-        "http://localhost:8080",
-        "https://6501cc7e10f85c0986f66a74--shiny-klepon-f022e3.netlify.app",
+        process.env.CLIENT,
+        process.env.USER_CLIENT,
       ],
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
@@ -50,6 +49,15 @@ export const ConnectSocket = (server) => {
       const fromId = data.from.id;
       const toId = data.to.id;
       const idRoom = getIdRoom(fromId, toId);
+
+      // For type message is file (image & file)
+      if (data.messageFile) {
+        io.to(idRoom).emit(
+          "message",
+          data.messageFile
+        );
+        return;
+      }
       sendMessage(data).then(res => {
         io.to(idRoom).emit(
           "message",

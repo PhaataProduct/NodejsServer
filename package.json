@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "NODE_ENV=local nodemon index.js",
+    "build:dev": "NODE_ENV=dev nodemon index.js",
+    "build:prd": "NODE_ENV=production nodemon index.js"
   },
   "author": "",
   "license": "ISC",

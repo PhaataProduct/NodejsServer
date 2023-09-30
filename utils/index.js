@@ -15,13 +15,13 @@ export const updateStatusUser = (userId, status) => {
 };
 
 export const sendMessage = (data) => {
-  const { from, to, text } = data;
+  const { from, to, text, file } = data;
   const dataMessage = {
     from_id: from.id,
     to_user: to.id,
     friend_id: to.id,
     message: text,
-    file: '',
+    file: file,
     is_subfolder: '',
   }
   return axiosServer.post('messages', dataMessage).catch(err => {

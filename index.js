@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import { createServer } from "http";
 import { ConnectSocket } from "./config/Socket.js";
 
-dotenv.config();
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app = express();
 const server = createServer(app);
