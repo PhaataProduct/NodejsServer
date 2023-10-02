@@ -8,7 +8,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app = express();
 const server = createServer(app);
-const PORT = 4000;
+const PORT = 3000;
 
 ConnectSocket(server);
 
