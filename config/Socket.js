@@ -7,8 +7,11 @@ export const ConnectSocket = (server) => {
   const io = new Server(server, {
     cors: {
       origin: [
+        "http://localhost:8080",
         "https://phaata.info",
         "https://user.phaata.info",
+        "https://phaata.com",
+        "https://user.phaata.com",
       ],
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
