@@ -15,11 +15,12 @@ export const updateStatusUser = (userId, status) => {
 };
 
 export const sendMessage = (data) => {
-  const { from, to, text, file } = data;
+  const { from, to, text, file, message_type } = data;
   const dataMessage = {
     from_id: from.id,
     to_user: to.id,
     friend_id: to.id,
+    message_type,
     message: text,
     file: file,
     is_subfolder: '',
