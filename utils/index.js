@@ -25,7 +25,6 @@ export const sendMessage = (data) => {
     file: file,
     is_subfolder: '',
   }
-  console.log(dataMessage)
   return axiosServer.post('messages', dataMessage).catch(err => {
     console.log(err)
   });
