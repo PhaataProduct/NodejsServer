@@ -64,9 +64,16 @@ export const ConnectSocket = (server) => {
       sendMessage(data).then(res => {
         io.to(idRoom).emit(
           "message",
-          res.data.message
+          { ...res.data.message, is_latest: 1 }
         );
       });
+    });
+
+    socket.on("seen_message", async (data) => {
+      const fromId = data.from.id;
+      const toId = data.to.id;
+      const idRoom = getIdRoom(fromId, toId);
+      io.to(idRoom).emit("seen_message");
     });
 
   });
