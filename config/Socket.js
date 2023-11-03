@@ -73,7 +73,7 @@ export const ConnectSocket = (server) => {
       const fromId = data.from.id;
       const toId = data.to.id;
       const idRoom = getIdRoom(fromId, toId);
-      io.to(idRoom).emit("seen_message");
+      io.to(idRoom).emit("seen_message", data);
     });
 
   });
