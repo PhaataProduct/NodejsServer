@@ -76,6 +76,16 @@ export const ConnectSocket = (server) => {
       io.to(idRoom).emit("seen_message", data);
     });
 
+    socket.on("open_chat", async (data) => {
+      // const data = {
+      //   fromId: userId,
+      //   toId: 1997,
+      //   friendType: 1,
+      // }
+      const { fromId } = data;
+      io.to(+fromId).emit("open_chat", data);
+    });
+
   });
 };
 
