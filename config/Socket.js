@@ -59,11 +59,21 @@ export const ConnectSocket = (server) => {
           "message",
           data.messageFile
         );
+
+        io.to(+toId).emit(
+          "receive_message",
+          data.messageFile
+        );
         return;
       }
       sendMessage(data).then(res => {
         io.to(idRoom).emit(
           "message",
+          { ...res.data.message, is_latest: 1 }
+        );
+
+        io.to(+toId).emit(
+          "receive_message",
           { ...res.data.message, is_latest: 1 }
         );
       });
